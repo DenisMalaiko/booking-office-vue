@@ -1,0 +1,34 @@
+<validation-observer
+  ref="observer"
+>
+  <v-form
+    @submit.prevent="onAuthSignIn"
+    class="sign-form"
+  >
+    <h2 class="sign-title">Sign In</h2>
+
+    <v-text-field
+      v-model="authSignInForm.email"
+      :rules="emailRules"
+      label="Email"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="authSignInForm.password"
+      :rules="passwordRules"
+      label="Password"
+      required
+    ></v-text-field>
+
+    <div class="sign-button-row">
+      <v-btn type="submit" color="primary">
+        Sign In
+      </v-btn>
+
+      <router-link class="sign-link" to="/auth/sign-up">
+        Sign Up
+      </router-link>
+    </div>
+  </v-form>
+</validation-observer>
