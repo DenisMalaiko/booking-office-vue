@@ -10,7 +10,7 @@ export default {
 
     return {
       ...AuthSignIn(),
-      ...Validations()
+      ...Validations(),
     }
   }
 }

@@ -14,11 +14,13 @@
     "bootstrap-vue": "^2.22.0",
     "bootstrap-vue-3": "^0.1.14",
     "core-js": "^3.8.3",
+    "firebase": "^9.9.0",
     "roboto-fontface": "*",
     "vue": "^3.2.37",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.1.2",
     "vuetify": "npm:@vuetify/nightly@next",
+    "vuex": "^4.0.2",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {

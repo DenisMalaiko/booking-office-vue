@@ -1,43 +1,47 @@
-<v-form class="sign-form">
-  <h2 class="sign-title">Sign Up</h2>
+<validation-observer
+  ref="observer"
+>
+  <v-form
+    @submit.prevent="onAuthSignUp"
+    class="sign-form"
+  >
+    <h2 class="sign-title">Sign Up</h2>
 
-  <v-text-field
-    v-model="authSignUpForm.name"
-    label="Name"
-    required
-  ></v-text-field>
+    <v-text-field
+      v-model="authSignUpForm.name"
+      label="Name"
+      required
+    ></v-text-field>
 
-  <v-text-field
-    v-model="authSignUpForm.email"
-    :rules="emailRules"
-    label="Email"
-    required
-  ></v-text-field>
+    <v-text-field
+      v-model="authSignUpForm.email"
+      :rules="emailRules"
+      label="Email"
+      required
+    ></v-text-field>
 
-  <v-select
-    :items="Roles"
-    filled
-    label="Filled style"
-  ></v-select>
+    <v-select
+      :items="Roles"
+      filled
+      label="Filled style"
+    ></v-select>
 
-  <v-text-field
-    v-model="authSignUpForm.password"
-    :rules="passwordRules"
-    label="Password"
-    required
-  ></v-text-field>
+    <v-text-field
+      v-model="authSignUpForm.password"
+      :rules="passwordRules"
+      label="Password"
+      required
+    ></v-text-field>
 
-  <div class="sign-button-row">
-    <v-btn
-      :disabled="invalid"
-      color="primary"
-    >
-      Sign Up
-    </v-btn>
+    <div class="sign-button-row">
+      <v-btn type="submit" color="primary">
+        Sign Up
+      </v-btn>
 
-    <router-link class="sign-link" to="/auth/sign-in">
-      Sign In
-    </router-link>
-  </div>
+      <router-link class="sign-link" to="/auth/sign-in">
+        Sign In
+      </router-link>
+    </div>
 
-</v-form>
+  </v-form>
+</validation-observer>
