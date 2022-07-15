@@ -1,4 +1,4 @@
-<template src="./auth-sign-in.html"></template>
+<template src="./Auth-Sign-In.html"></template>
 
 <script>
 import {AuthSignIn} from "@/composition/auth/auth-sign-in";
@@ -10,7 +10,7 @@ export default {
 
     return {
       ...AuthSignIn(),
-      ...Validations()
+      ...Validations(),
     }
   }
 }

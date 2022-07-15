@@ -1,0 +1,20 @@
+<section class="sign">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sign-wrap">
+
+          <div v-show="loading">
+            <LoaderComponent></LoaderComponent>
+          </div>
+
+          <div v-show="!loading">
+            <router-view></router-view>
+            <ErrorComponent></ErrorComponent>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

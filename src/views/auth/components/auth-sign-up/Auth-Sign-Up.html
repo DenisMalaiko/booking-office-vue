@@ -1,27 +1,34 @@
-<v-form class="sign-form">
+<v-form
+  ref="formSignUp"
+  v-model="authSignUpForm.valid"
+  class="sign-form"
+  lazy-validation
+  @submit.prevent="onAuthSignUp($refs)"
+>
   <h2 class="sign-title">Sign Up</h2>
 
   <v-text-field
-    v-model="authSignUpForm.name"
+    v-model="authSignUpForm.data.name"
     label="Name"
     required
   ></v-text-field>
 
   <v-text-field
-    v-model="authSignUpForm.email"
+    v-model="authSignUpForm.data.email"
     :rules="emailRules"
     label="Email"
     required
   ></v-text-field>
 
   <v-select
+    v-model="authSignUpForm.data.role"
     :items="Roles"
     filled
     label="Filled style"
   ></v-select>
 
   <v-text-field
-    v-model="authSignUpForm.password"
+    v-model="authSignUpForm.data.password"
     :rules="passwordRules"
     label="Password"
     required
@@ -29,13 +36,18 @@
 
   <div class="sign-button-row">
     <v-btn
-      :disabled="invalid"
+      :disabled="!authSignUpForm.valid"
       color="primary"
+      type="submit"
     >
       Sign Up
     </v-btn>
 
-    <router-link class="sign-link" to="/auth/sign-in">
+    <router-link
+      class="sign-link"
+      to="/auth/sign-in"
+      @click="clearError()"
+    >
       Sign In
     </router-link>
   </div>
