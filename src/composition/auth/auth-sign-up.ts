@@ -5,18 +5,33 @@ export function AuthSignUp() {
   const store = useStore();
 
   const authSignUpForm = ref({
-    name: '',
-    email: '',
-    role: '',
-    password: '',
+    valid: false,
+    data: {
+      name: '',
+      email: '',
+      role: '',
+      password: '',
+    }
   })
 
-  const onAuthSignUp = () => {
-    store.dispatch('authSignUp', authSignUpForm.value)
+  const onAuthSignUp = (ref: any) => {
+    if(authSignUpForm.value.valid) {
+      store.commit('startLoading');
+      store.dispatch('authSignUp', authSignUpForm.value.data)
+        .then(() => {
+          ref.formSignUp.reset();
+          ref.formSignUp.resetValidation;
+        })
+    }
+  }
+
+  const clearError = () => {
+    store.commit('clearError');
   }
 
   return {
     authSignUpForm,
-    onAuthSignUp
+    onAuthSignUp,
+    clearError
   }
 }

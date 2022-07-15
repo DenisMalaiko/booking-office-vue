@@ -1,0 +1,42 @@
+<v-form
+  ref="formSignIn"
+  v-model="authSignInForm.valid"
+  class="sign-form"
+  lazy-validation
+  @submit.prevent="onAuthSignIn($refs)"
+>
+  <h2 class="sign-title">Sign In</h2>
+  <p>malaiko.denis@gmail.com</p>
+  <p>1234567890</p>
+  <v-text-field
+    v-model="authSignInForm.data.email"
+    :rules="emailRules"
+    label="Email"
+    required
+  ></v-text-field>
+
+  <v-text-field
+    v-model="authSignInForm.data.password"
+    :rules="passwordRules"
+    label="Password"
+    required
+  ></v-text-field>
+
+  <div class="sign-button-row">
+    <v-btn
+      color="primary"
+      type="submit"
+      :disabled="!authSignInForm.valid"
+    >
+      Sign In
+    </v-btn>
+
+    <router-link
+      class="sign-link"
+      to="/auth/sign-up"
+      @click="clearError()"
+    >
+      Sign Up
+    </router-link>
+  </div>
+</v-form>

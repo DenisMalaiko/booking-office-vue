@@ -11,11 +11,9 @@ import {
   query,
   where,
   getDocs,
-  addDoc,
   doc,
   setDoc
 } from "firebase/firestore";
-
 
 const store = createStore({
   state() {
@@ -23,22 +21,28 @@ const store = createStore({
       token: null,
       user: null,
       error: '',
-      count: 5
+      loading: false
     }
   },
   mutations: {
-    increment (state: any) {
-      state.count++
+    setError(state: any, payload) {
+      state.error = payload;
+    },
+    clearError(state) {
+      state.error = "";
+    },
+    setUser(state, payload) {
+      state.user = payload;
+    },
+    startLoading(state) {
+      state.loading = true;
+    },
+    endLoading(state) {
+      state.loading = false;
     },
     setToken(state, payload) {
       state.token = payload;
     },
-    setError(state, payload) {
-      state.error = payload;
-    },
-    setUser(state, payload) {
-      state.user = payload;
-    }
   },
   actions: {
     authSignIn ({commit, dispatch}, user) {
@@ -52,6 +56,8 @@ const store = createStore({
           });
         }).catch(error => {
         commit('setError', error);
+      }).finally(() => {
+        commit('endLoading');
       });
     },
 
@@ -66,20 +72,25 @@ const store = createStore({
           });
         }).catch(error => {
         commit('setError', error);
-      })
+      }).finally(() => {
+        commit('endLoading');
+      });
     },
 
     async getCurrentUser({commit}, email) {
       const users = collection(db, "users");
       const user = query(users, where("email", "==", email));
       const querySnapshot = await getDocs(user);
+      let userCurrent;
 
-      querySnapshot.forEach((doc) => {
-        commit('setUser', {
+      await querySnapshot.forEach((doc) => {
+        userCurrent = {
           id: doc.id,
           ...doc.data()
-        })
+        }
       });
+
+      commit('setUser', userCurrent)
     }
   }
 })

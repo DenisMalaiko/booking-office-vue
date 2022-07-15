@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AuthPage from "@/views/auth/auth.vue";
-import AuthSignIn from "@/views/auth/components/auth-sign-in/auth-sign-in.vue";
-import AuthSignUp from "@/views/auth/components/auth-sign-up/auth-sign-up.vue";
+import AuthPage from "@/views/auth/Auth.vue";
+import AuthSignIn from "@/views/auth/components/auth-sign-in/Auth-Sign-In.vue";
+import AuthSignUp from "@/views/auth/components/auth-sign-up/Auth-Sign-Up.vue";
+import BookingPage from "@/views/booking/Booking.vue"
+import Guard from "@/shared/helpers/Guard";
 
 const routes = [
   {
@@ -10,20 +12,23 @@ const routes = [
     component: AuthPage,
     children: [
       {
+        name: 'sign-in',
         path: 'sign-in',
         component: AuthSignIn
       },
       {
+        name: 'sign-up',
         path: 'sign-up',
         component: AuthSignUp
       }
     ]
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   component: () => import('../views/AboutView.vue')
-  // },
+  {
+    path: '/booking',
+    name: 'booking',
+    component: BookingPage,
+    beforeEnter: [Guard]
+  },
   {
     path: '/',
     redirect: '/auth/sign-in'
