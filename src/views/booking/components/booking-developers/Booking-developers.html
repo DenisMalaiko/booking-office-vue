@@ -1,0 +1,20 @@
+<div class="booking-office booking-wrap">
+  <ul class="booking-list">
+    <li
+      class="booking-item"
+      v-for="table in tables"
+      :key="table.id"
+      @click="addBooking(table)"
+      :class="{active: table.myBooking, disabled: table.status}"
+    >
+      <v-icon>
+        mdi-table-furniture
+      </v-icon>
+      <span v-if="table.myBooking">My booking</span>
+    </li>
+  </ul>
+</div>
+
+<BookingDialog
+  ref="bookingDialog"
+></BookingDialog>

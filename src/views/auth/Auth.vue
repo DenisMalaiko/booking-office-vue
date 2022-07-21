@@ -1,5 +1,4 @@
 <template src="./Auth.html"></template>
-
 <style lang="scss" src="./Auth.scss"></style>
 
 <script>
@@ -18,7 +17,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const loading = computed(() => store.state.loading);
+    const loading = computed(() => store.state.helper.loading);
 
     return {
       loading
