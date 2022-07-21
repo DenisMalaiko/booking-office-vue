@@ -16,7 +16,6 @@ export function AuthSignUp() {
 
   const onAuthSignUp = (ref: any) => {
     if(authSignUpForm.value.valid) {
-      store.commit('startLoading');
       store.dispatch('authSignUp', authSignUpForm.value.data)
         .then(() => {
           ref.formSignUp.reset();

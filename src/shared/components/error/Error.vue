@@ -9,7 +9,7 @@ export default {
   name: "ErrorComponent",
   setup() {
     const storeVuex = store;
-    const error = computed(() => storeVuex.state.error)
+    const error = computed(() => storeVuex.state.helper.error)
 
     return {
       error

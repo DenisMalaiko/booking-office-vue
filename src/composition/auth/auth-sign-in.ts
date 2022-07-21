@@ -1,10 +1,10 @@
 import {reactive, ref, watch} from "vue";
-import {useStore} from "vuex";
+import store from "@/store";
 import router from "@/router";
 
 export function AuthSignIn() {
-  const store = useStore();
-  const token = reactive(() => store.state.token);
+  const storeVuex: any = store;
+  const token = reactive(() => storeVuex.state.auth.token);
 
   const authSignInForm = ref({
     valid: false,
@@ -16,20 +16,18 @@ export function AuthSignIn() {
 
   const onAuthSignIn = (ref: any) => {
     if(authSignInForm.value.valid) {
-      store.commit('startLoading');
-      store.dispatch('authSignIn', authSignInForm.value.data);
+      storeVuex.commit('startLoading');
+      storeVuex.dispatch('authSignIn', authSignInForm.value.data);
       watch(token, (token) => {
         if(token) {
-          ref.formSignIn.reset();
-          ref.formSignIn.resetValidation;
-          router.push({ name: 'booking' })
+          router.push({ name: 'developers-office' })
         }
       })
     }
   }
 
   const clearError = () => {
-    store.commit('clearError');
+    storeVuex.commit('clearError');
   }
 
   return {

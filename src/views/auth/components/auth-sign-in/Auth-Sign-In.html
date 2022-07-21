@@ -6,8 +6,7 @@
   @submit.prevent="onAuthSignIn($refs)"
 >
   <h2 class="sign-title">Sign In</h2>
-  <p>malaiko.denis@gmail.com</p>
-  <p>1234567890</p>
+
   <v-text-field
     v-model="authSignInForm.data.email"
     :rules="emailRules"

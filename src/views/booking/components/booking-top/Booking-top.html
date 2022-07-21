@@ -1,0 +1,26 @@
+<div class="booking-top">
+  <div class="booking-actions">
+    <Datepicker
+      v-model="currentdDate"
+      :value="currentdDate"
+      class="booking-datepicker"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      @update:modelValue="onSelectDate"
+    ></Datepicker>
+  </div>
+
+  <div class="booking-buttons">
+    <h3 v-if="userProp">
+      {{ userProp.name }}
+      <span>Role: {{userProp.role}}</span>
+    </h3>
+
+    <v-btn
+      @click="onLogout()"
+      color="primary"
+    >
+      Log out
+    </v-btn>
+  </div>
+</div>
